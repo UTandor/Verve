@@ -1,0 +1,19 @@
+{
+  "name": "verve",
+  "version": "0.0.0",
+  "description": "\u0016This recipe app combines recipe management with social networking features, allowing users to create and share recipes, discover dishes from others, and build a community around food.",
+  "main": "index.js",
+  "scripts": {
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm run dev",
+    "build:ui": "cd server && rm -rf dist && cd ../client && npm run build && cp -r dist ../server && cd ../ && npm run server"
+  },
+  "author": "Usman Tanveer",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
+}
