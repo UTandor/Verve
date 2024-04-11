@@ -1,13 +1,14 @@
 const recipeRouter = require("express").Router();
 const User = require("../models/user");
+const logger = require("../utils/logger");
 const Recipe = require("../models/recipe");
 
-recipeRouter.get("/api/recipes", async (request, response) => {
+recipeRouter.get("/", async (request, response) => {
   const recipes = await Recipe.find({});
   response.json(recipes);
 });
 
-recipeRouter.post("/api/recipes", async (request, response) => {
+recipeRouter.post("/", async (request, response) => {
   const recipeToCreate = request.body;
   try {
     if (
@@ -22,12 +23,12 @@ recipeRouter.post("/api/recipes", async (request, response) => {
       response.status(400).end();
     }
   } catch (error) {
-    console.log(error);
+    logger.error(error);
     response.status(500).json({ error: "Internal server error" });
   }
 });
 
-recipeRouter.put("/api/recipes/:id", async (request, response) => {
+recipeRouter.put("/:id", async (request, response) => {
   try {
     const recipe = await Recipe.findById(request.params.id);
     const currentUser = await User.findOne({ name: request.body.name });
@@ -51,7 +52,7 @@ recipeRouter.put("/api/recipes/:id", async (request, response) => {
       response.status(204).json({ message: "User has liked the post" });
     }
   } catch (error) {
-    console.log(error);
+    logger.error(error);
     response.status(500).json({ error: error });
   }
 });

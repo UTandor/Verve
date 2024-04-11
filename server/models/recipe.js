@@ -5,6 +5,7 @@ const recipeSchema = new mongoose.Schema({
   author: String,
   likes: { type: Number, default: 0 },
   description: String,
+  imageUrl: String,
 });
 
 
