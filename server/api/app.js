@@ -1,12 +1,12 @@
 const express = require("express");
 require("dotenv").config();
-const config = require("./utils/config");
+const config = require("../utils/config");
 const cors = require("cors");
-const userRouter = require("./controllers/user");
-const logger = require("./utils/logger");
+const userRouter = require("../controllers/user");
+const logger = require("../utils/logger");
 const mongoose = require("mongoose");
-const recipeRouter = require("./controllers/recipe");
-const middleware = require("./utils/middleware");
+const recipeRouter = require("../controllers/recipe");
+const middleware = require("../utils/middleware");
 const app = express();
 
 app.use(cors());
