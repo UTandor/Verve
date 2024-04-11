@@ -1,0 +1,7 @@
+[build]
+  functions="C:/Users/demon.USMAN/Desktop/Developing/Verve/server/functions"
+
+[[headers]]
+  for = "/*"
+    [headers.values]
+    Access-Control-Allow-Origin = "*"

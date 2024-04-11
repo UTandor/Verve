@@ -1,5 +1,6 @@
 const express = require("express");
 require("dotenv").config();
+const serverless = require("serverless-http");
 const config = require("../utils/config");
 const cors = require("cors");
 const userRouter = require("../controllers/user");
@@ -7,7 +8,9 @@ const logger = require("../utils/logger");
 const mongoose = require("mongoose");
 const recipeRouter = require("../controllers/recipe");
 const middleware = require("../utils/middleware");
+
 const app = express();
+const router = express.Router();
 
 app.use(cors());
 app.use(express.json());
@@ -23,10 +26,11 @@ mongoose
     logger.error("error connecting to MongoDB:", error.message);
   });
 
-app.use("/api/users", userRouter);
-app.use("/api/recipes", recipeRouter);
+router.use("/api/users", userRouter);
+router.use("/api/recipes", recipeRouter);
 
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
 
-module.exports = app;
+app.use("/.netlify/functions/api", router);
+module.exports.handler = serverless(app);
