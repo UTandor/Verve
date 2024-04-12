@@ -27,7 +27,10 @@ const Register = ({ changeCurrentPage, changeCurrentTab }) => {
       password: password,
     };
     axios
-      .post(`${URL}/api/users`, userToSave)
+      .post(
+        `https://verve-back.netlify.app/.netlify/functions/app//api/users`,
+        userToSave
+      )
       .then((result) => {
         localStorage.setItem("name", name);
         setPassword("");

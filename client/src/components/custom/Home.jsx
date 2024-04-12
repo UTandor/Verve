@@ -116,9 +116,14 @@ const RecipeCreation = ({ recipes, changeRecipes }) => {
     const image = randomFoodImage.data.image;
     const newRecipe = { ...recipe, imageUrl: image };
     setRecipe(newRecipe);
-    axios.post(`${URL}/api/recipes`, newRecipe).then((response) => {
-      changeRecipes([...recipes, response.data]);
-    });
+    axios
+      .post(
+        `https://verve-back.netlify.app/.netlify/functions/app//api/recipes`,
+        newRecipe
+      )
+      .then((response) => {
+        changeRecipes([...recipes, response.data]);
+      });
     setRecipe({
       title: "",
       description: "",
@@ -220,7 +225,9 @@ const RecipeViewer = ({ recipes, changeRecipes }) => {
   const [likedByUser, setLikedByUser] = useState([]);
   const getRecipes = async () => {
     try {
-      const response = await axios.get(`${URL}/api/recipes"`);
+      const response = await axios.get(
+        `https://verve-back.netlify.app/.netlify/functions/app//api/recipes"`
+      );
       changeRecipes(response.data);
     } catch (error) {
       console.log(error);
@@ -230,7 +237,9 @@ const RecipeViewer = ({ recipes, changeRecipes }) => {
   const getLikedByUser = async () => {
     try {
       const response = await axios.get(
-        `${URL}/api/users/${localStorage.getItem("name")}`
+        `https://verve-back.netlify.app/.netlify/functions/app//api/users/${localStorage.getItem(
+          "name"
+        )}`
       );
       setLikedByUser(response.data.liked);
     } catch (error) {
@@ -247,9 +256,12 @@ const RecipeViewer = ({ recipes, changeRecipes }) => {
   }, [likedByUser]);
 
   const handleLike = async (id) => {
-    await axios.put(`${URL}/api/recipes/${id}`, {
-      name: localStorage.getItem("name"),
-    });
+    await axios.put(
+      `https://verve-back.netlify.app/.netlify/functions/app//api/recipes/${id}`,
+      {
+        name: localStorage.getItem("name"),
+      }
+    );
 
     getLikedByUser();
     getRecipes();

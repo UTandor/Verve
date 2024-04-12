@@ -21,10 +21,13 @@ const Login = ({ changeCurrentPage }) => {
   const handleLogin = (e) => {
     e.preventDefault();
     axios
-      .post(`${URL}/api/users/login`, {
-        name: name,
-        password: password,
-      })
+      .post(
+        `https://verve-back.netlify.app/.netlify/functions/app//api/users/login`,
+        {
+          name: name,
+          password: password,
+        }
+      )
       .then((result) => {
         localStorage.setItem("name", name);
         setPassword("");
