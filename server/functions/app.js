@@ -28,9 +28,8 @@ mongoose
 
 router.use("/api/users", userRouter);
 router.use("/api/recipes", recipeRouter);
+router.get('/', (req, res) => res.send('haha'))
 
-app.use(middleware.unknownEndpoint);
-app.use(middleware.errorHandler);
 
-app.use("/.netlify/functions/api", router);
+app.use("/.netlify/functions/app", router);
 module.exports.handler = serverless(app);

@@ -4,12 +4,12 @@ import { Textarea } from "@/components/ui/textarea";
 import {
   HeartIcon,
   TextIcon,
-  Ellipsis,
   ArrowUpRight,
   Grape,
   ExternalLink,
 } from "lucide-react";
 import axios from "axios";
+require('dotenv').config()
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -93,6 +93,7 @@ const Home = ({ changeCurrentPage }) => {
 export default Home;
 
 const RecipeCreation = ({ recipes, changeRecipes }) => {
+  const URL = process.env.BACKEND_URL
   const [recipe, setRecipe] = useState({
     title: "",
     description: "",
@@ -116,7 +117,7 @@ const RecipeCreation = ({ recipes, changeRecipes }) => {
     const newRecipe = { ...recipe, imageUrl: image };
     setRecipe(newRecipe);
     axios
-      .post("http://localhost:3001/api/recipes", newRecipe)
+      .post(`${URL}/api/recipes`, newRecipe)
       .then((response) => {
         changeRecipes([...recipes, response.data]);
       });
@@ -221,7 +222,7 @@ const RecipeViewer = ({ recipes, changeRecipes }) => {
   const [likedByUser, setLikedByUser] = useState([]);
   const getRecipes = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/api/recipes");
+      const response = await axios.get(`${URL}/api/recipes"`)
       changeRecipes(response.data);
     } catch (error) {
       console.log(error);
@@ -231,7 +232,7 @@ const RecipeViewer = ({ recipes, changeRecipes }) => {
   const getLikedByUser = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/api/users/${localStorage.getItem("name")}`
+        `${URL}/api/users/${localStorage.getItem("name")}`
       );
       setLikedByUser(response.data.liked);
     } catch (error) {
@@ -248,7 +249,7 @@ const RecipeViewer = ({ recipes, changeRecipes }) => {
   }, [likedByUser]);
 
   const handleLike = async (id) => {
-    await axios.put(`http://localhost:3001/api/recipes/${id}`, {
+    await axios.put(`${URL}/api/recipes/${id}`, {
       name: localStorage.getItem("name"),
     });
 

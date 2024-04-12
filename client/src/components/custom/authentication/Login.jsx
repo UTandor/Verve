@@ -12,15 +12,17 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+require("dotenv").config();
 
 const Login = ({ changeCurrentPage }) => {
+  const URL = process.env.BACKEND_URL;
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3001/api/users/login", {
+      .post(`${URL}/api/users/login`, {
         name: name,
         password: password,
       })

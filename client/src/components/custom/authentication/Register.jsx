@@ -11,14 +11,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+require("dotenv").config();
 import { Label } from "@/components/ui/label";
 
 const Register = ({ changeCurrentPage, changeCurrentTab }) => {
+  const URL = process.env.BACKEND_URL
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
-  
-  
   const handleRegister = (e) => {
     e.preventDefault();
     console.log(name);
@@ -28,7 +28,7 @@ const Register = ({ changeCurrentPage, changeCurrentTab }) => {
       password: password,
     };
     axios
-      .post("http://localhost:3001/api/users", userToSave)
+      .post(`${URL}/api/users`, userToSave)
       .then((result) => {
         localStorage.setItem("name", name);
         setPassword("");
