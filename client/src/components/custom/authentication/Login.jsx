@@ -12,10 +12,9 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-require("dotenv").config();
 
 const Login = ({ changeCurrentPage }) => {
-  const URL = process.env.BACKEND_URL;
+  const URL = JSON.stringify(import.meta.env.BACKEND_URL);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 

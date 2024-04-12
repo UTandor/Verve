@@ -9,7 +9,6 @@ import {
   ExternalLink,
 } from "lucide-react";
 import axios from "axios";
-require('dotenv').config()
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -93,7 +92,8 @@ const Home = ({ changeCurrentPage }) => {
 export default Home;
 
 const RecipeCreation = ({ recipes, changeRecipes }) => {
-  const URL = process.env.BACKEND_URL
+  const URL = JSON.stringify(import.meta.env.BACKEND_URL);
+
   const [recipe, setRecipe] = useState({
     title: "",
     description: "",
@@ -116,11 +116,9 @@ const RecipeCreation = ({ recipes, changeRecipes }) => {
     const image = randomFoodImage.data.image;
     const newRecipe = { ...recipe, imageUrl: image };
     setRecipe(newRecipe);
-    axios
-      .post(`${URL}/api/recipes`, newRecipe)
-      .then((response) => {
-        changeRecipes([...recipes, response.data]);
-      });
+    axios.post(`${URL}/api/recipes`, newRecipe).then((response) => {
+      changeRecipes([...recipes, response.data]);
+    });
     setRecipe({
       title: "",
       description: "",
@@ -222,7 +220,7 @@ const RecipeViewer = ({ recipes, changeRecipes }) => {
   const [likedByUser, setLikedByUser] = useState([]);
   const getRecipes = async () => {
     try {
-      const response = await axios.get(`${URL}/api/recipes"`)
+      const response = await axios.get(`${URL}/api/recipes"`);
       changeRecipes(response.data);
     } catch (error) {
       console.log(error);

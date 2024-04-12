@@ -11,11 +11,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-require("dotenv").config();
 import { Label } from "@/components/ui/label";
 
 const Register = ({ changeCurrentPage, changeCurrentTab }) => {
-  const URL = process.env.BACKEND_URL
+  const URL = JSON.stringify(import.meta.env.BACKEND_URL);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
