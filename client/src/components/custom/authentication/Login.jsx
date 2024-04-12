@@ -55,7 +55,7 @@ const Login = ({ changeCurrentPage }) => {
   return (
     <Card className="w-full justify-center  max-w-sm">
       <CardHeader>
-        <CardTitle className="text-2xl">Login</CardTitle>
+        <CardTitle className="text-2xl ">Login</CardTitle>
         <CardDescription>Please login in to your account.</CardDescription>
       </CardHeader>
       <form className="grid gap-4" onSubmit={(e) => handleLogin(e)}>

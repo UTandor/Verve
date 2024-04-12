@@ -28,14 +28,14 @@
     "react-dom": "^18.2.0",
     "sonner": "^1.4.41",
     "tailwind-merge": "^2.2.2",
-    "tailwindcss-animate": "^1.0.7",
-    "vite-plugin-require": "^1.1.14"
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.19",
+    "blurhash": "^2.0.5",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",

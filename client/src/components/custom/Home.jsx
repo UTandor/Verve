@@ -281,13 +281,17 @@ const RecipeViewer = ({ recipes, changeRecipes }) => {
                 <div className="rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700">
                   <img
                     alt="Cover image"
+                    width={400}
                     height={225}
                     src={recipe.imageUrl}
+                    loading="lazy"
                     style={{
                       aspectRatio: "400/225",
                       objectFit: "cover",
+                      filter: "blur(20px)",
+                      transition: "filter 0.5s ease",
                     }}
-                    width={400}
+                    onLoad={(e) => (e.target.style.filter = "blur(0px)")}
                   />
                 </div>
                 <div className="grid gap-1.5">
