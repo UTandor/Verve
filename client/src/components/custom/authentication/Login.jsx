@@ -22,7 +22,7 @@ const Login = ({ changeCurrentPage }) => {
     e.preventDefault();
     axios
       .post(
-        `https://verve-back.netlify.app/.netlify/functions/app//api/users/login`,
+        `https://verve-back.netlify.app/.netlify/functions/app/api/users/login`,
         {
           name: name,
           password: password,

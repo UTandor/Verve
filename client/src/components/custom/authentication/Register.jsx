@@ -28,7 +28,7 @@ const Register = ({ changeCurrentPage, changeCurrentTab }) => {
     };
     axios
       .post(
-        `https://verve-back.netlify.app/.netlify/functions/app//api/users`,
+        `https://verve-back.netlify.app/.netlify/functions/app/api/users`,
         userToSave
       )
       .then((result) => {

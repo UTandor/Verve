@@ -118,7 +118,7 @@ const RecipeCreation = ({ recipes, changeRecipes }) => {
     setRecipe(newRecipe);
     axios
       .post(
-        `https://verve-back.netlify.app/.netlify/functions/app//api/recipes`,
+        `https://verve-back.netlify.app/.netlify/functions/app/api/recipes`,
         newRecipe
       )
       .then((response) => {
@@ -226,7 +226,7 @@ const RecipeViewer = ({ recipes, changeRecipes }) => {
   const getRecipes = async () => {
     try {
       const response = await axios.get(
-        `https://verve-back.netlify.app/.netlify/functions/app//api/recipes"`
+        `https://verve-back.netlify.app/.netlify/functions/app/api/recipes`
       );
       changeRecipes(response.data);
     } catch (error) {
@@ -237,7 +237,7 @@ const RecipeViewer = ({ recipes, changeRecipes }) => {
   const getLikedByUser = async () => {
     try {
       const response = await axios.get(
-        `https://verve-back.netlify.app/.netlify/functions/app//api/users/${localStorage.getItem(
+        `https://verve-back.netlify.app/.netlify/functions/app/api/users/${localStorage.getItem(
           "name"
         )}`
       );
@@ -257,7 +257,7 @@ const RecipeViewer = ({ recipes, changeRecipes }) => {
 
   const handleLike = async (id) => {
     await axios.put(
-      `https://verve-back.netlify.app/.netlify/functions/app//api/recipes/${id}`,
+      `https://verve-back.netlify.app/.netlify/functions/app/api/recipes/${id}`,
       {
         name: localStorage.getItem("name"),
       }
