@@ -57,16 +57,13 @@ const Home = ({ changeCurrentPage }) => {
             <div className="space-y-2">
               <h1 className="text-4xl font-semibold">Cook. Share. Refine.</h1>
               <p className="text-xs text-slate-700 mb-2">
-                Create and share recipes with each other on the web yes and no
+                Create and share recipes with each other on the web instantly.
               </p>
             </div>
-            <div className=" space-y-4 flex justify-center flex-col items-center">
+            <div className=" space-y-4  justify-center flex-col items-center">
               <RecipeCreation recipes={recipes} changeRecipes={setRecipes} />
 
               <div className="flex space-x-2 justify-center items-center ">
-                <Badge variant={"secondary"}>
-                  UserGenerated <ArrowUpRight size={16} />
-                </Badge>
                 <Badge variant={"secondary"}>
                   American
                   <ArrowUpRight size={16} />
@@ -144,10 +141,10 @@ const RecipeCreation = ({ recipes, changeRecipes }) => {
 
   return (
     <div className="w-full">
-      <form className="w-1/2 mx-auto" onSubmit={(e) => handleDialogTrigger(e)}>
+      <form className="w-full lg:w-1/2 mx-auto" onSubmit={(e) => handleDialogTrigger(e)}>
         <Input
           type="text"
-          className="pb-2 "
+          className="pb-2 w-full"
           value={recipe.title}
           onChange={(e) => setRecipe({ ...recipe, title: e.target.value })}
           onKeyPress={handleKeyPress}
